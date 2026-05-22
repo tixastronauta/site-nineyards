@@ -1,0 +1,12 @@
+{
+  "name": "site-nineyards",
+  "private": true,
+  "scripts": {
+    "build": "bash build.sh",
+    "deploy": "bash deploy.sh",
+    "preview": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.86.0"
+  }
+}
