@@ -1,0 +1,12 @@
+name = "nineyards-pt-site"
+compatibility_date = "2026-04-28"
+main = "worker.offline.js"
+account_id = "231d2ea0a8a81607df5a53041807f895"
+
+[[routes]]
+pattern = "nineyards.pt"
+custom_domain = true
+
+[[routes]]
+pattern = "www.nineyards.pt"
+custom_domain = true

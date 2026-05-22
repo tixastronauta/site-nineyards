@@ -4,7 +4,8 @@
   "scripts": {
     "build": "bash build.sh",
     "deploy": "bash deploy.sh",
-    "preview": "wrangler dev"
+    "offline": "bash offline.sh",
+    "preview": "bash build.sh && wrangler dev"
   },
   "devDependencies": {
     "wrangler": "^4.86.0"

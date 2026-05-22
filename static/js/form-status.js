@@ -13,7 +13,7 @@
 
   var isSuccess = status === 'success';
   var accentColor = isSuccess ? '#22c55e' : '#ff4d4d';
-  var title = isSuccess ? 'Pedido enviado!' : 'Algo correu mal';
+  var title = isSuccess ? 'Request sent!' : 'Something went wrong';
   var msg = isSuccess ? SUCCESS_MSG : ERROR_MSG;
 
   var overlay = document.createElement('div');
@@ -55,7 +55,7 @@
   msgEl.style.cssText = ['color:#bbb','font-size:15px','line-height:1.6','margin:0 0 28px'].join(';');
 
   var ctaBtn = document.createElement('button');
-  ctaBtn.textContent = 'Fechar';
+  ctaBtn.textContent = 'Close';
   ctaBtn.style.cssText = [
     'background:' + accentColor,'color:' + (isSuccess ? '#0d0d0d' : '#fff'),
     'border:none','border-radius:8px','font-size:15px','font-weight:600',

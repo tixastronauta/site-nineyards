@@ -27,34 +27,29 @@ build.sh          Build pipeline
 deploy.sh         build + wrangler deploy
 worker.js         Cloudflare Worker (www → apex redirect, serves assets)
 wrangler.toml     Worker config
-site.env          Site metadata & secrets (not committed)
+site.env          Site metadata & secrets
 ```
 
 ---
 
-## Local development
+## Commands
 
 ```bash
-npm install        # first time only
-npm run build      # produces dist/
-npm run preview    # wrangler dev — serves dist/ locally
+npm install          # first time only — installs wrangler
+
+npm run build        # build src/ → dist/ (required before preview or manual wrangler commands)
+npm run preview      # build + serve locally via wrangler dev
+npm run deploy       # build + deploy to production (nineyards.pt)
+npm run offline      # put the site into maintenance mode (503) immediately — no build needed
 ```
 
----
-
-## Deploying
-
-```bash
-npm run deploy
-```
-
-This runs `build.sh` first, then pushes to Cloudflare Workers via `wrangler deploy`.
+To bring the site back online after `offline`, run `npm run deploy`.
 
 ---
 
 ## Configuration
 
-All build-time values live in `site.env` (not committed to version control):
+All build-time values live in `site.env`:
 
 | Variable | Description |
 |---|---|
@@ -67,6 +62,9 @@ All build-time values live in `site.env` (not committed to version control):
 | `OG_LOCALE` | e.g. `en_US` |
 | `OG_SITE_NAME` | Site name for OG |
 | `GTM_ID` | Google Tag Manager container ID |
+| `LINKEDIN_URL` | LinkedIn company page URL |
+| `HIDE_NEWSLETTER` | `true` / `false` — hide the newsletter section in the footer |
+| `HIDE_WEBFLOW_BADGE` | `true` / `false` — hide the "Powered by Webflow" footer text |
 | `FORM_ACTION` | Mailer endpoint URL |
 | `FORM_RECIPIENT` | Email address for form submissions |
 | `FORM_SUCCESS_MSG` | Success message shown after form submit |
