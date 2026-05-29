@@ -1,0 +1,205 @@
+.section.partners {
+  padding-top: 130px;
+  padding-bottom: 130px;
+}
+
+.partners-row {
+  grid-column-gap: 64px;
+  grid-row-gap: 56px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.partners-heading-col {
+  grid-column-gap: 18px;
+  flex: 1 1 340px;
+  align-items: center;
+  display: flex;
+}
+
+.partners-dot {
+  flex: 0 0 auto;
+  opacity: .55;
+}
+
+.partners-title {
+  color: var(--white-shade--white);
+  font-family: var(--_font-family---body-font);
+  font-size: clamp(27px, 3.5vw, 51px);
+  line-height: var(--_typography---line-height--m);
+  font-weight: var(--_typography---font-weight--medium);
+  letter-spacing: -.01em;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+.partners-logos {
+  align-items: center;
+  display: flex;
+}
+
+.partners-logo-link {
+  opacity: .85;
+  transition: opacity .2s ease;
+  align-items: center;
+  padding-left: 48px;
+  padding-right: 48px;
+  display: flex;
+}
+
+.partners-logo-link:last-child {
+  padding-right: 0;
+}
+
+.partners-logo-link + .partners-logo-link {
+  border-left: 1px solid rgba(255, 255, 255, .14);
+}
+
+.partners-logo-link:hover {
+  opacity: 1;
+}
+
+.partners-logo {
+  width: auto;
+  height: 40px;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .section.partners {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section.partners {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .partners-heading-col {
+    flex-basis: 100%;
+  }
+
+  .partners-logo-link {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .partners-logo {
+    height: 30px;
+  }
+}
+
+/* a) "Red Right Hand" — scarlet accent */
+.rrh-accent {
+  color: #ff2400;
+}
+
+/* b) "Live" indicator dot on the Branding for AI nav link */
+.nav-menu-dot.dot-live {
+  background-color: #2be06b;
+  box-shadow: 0 0 6px rgba(43, 224, 107, .9);
+  animation: dot-live-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes dot-live-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(43, 224, 107, .55), 0 0 6px rgba(43, 224, 107, .9);
+  }
+  50% {
+    opacity: .35;
+    box-shadow: 0 0 0 5px rgba(43, 224, 107, 0), 0 0 6px rgba(43, 224, 107, .4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu-dot.dot-live {
+    animation: none;
+  }
+}
+
+/* c) Readability scrim over project deck images (keeps white logos legible) */
+.single-project-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 120% at 50% 50%, rgba(0, 0, 0, .5), rgba(0, 0, 0, .28));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.single-project-wrapper > .project-card-mask,
+.single-project-wrapper > .project-sponser-logo-wrap {
+  z-index: 2;
+}
+
+/* Linked client logo on project case-study pages ("visit website") */
+.section.client-visit {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.section.client-visit .w-container {
+  display: flex;
+  justify-content: center;
+}
+
+.client-visit-link {
+  grid-row-gap: 18px;
+  flex-direction: column;
+  align-items: center;
+  opacity: .85;
+  transition: opacity .2s ease;
+  text-decoration: none;
+  display: flex;
+}
+
+.client-visit-link:hover {
+  opacity: 1;
+}
+
+.client-visit-logo {
+  width: auto;
+  height: 46px;
+  max-width: 260px;
+}
+
+.client-visit-cta {
+  color: var(--white-shade--white);
+  font-family: var(--_font-family---body-font);
+  font-size: 15px;
+  letter-spacing: .04em;
+  text-transform: lowercase;
+  opacity: .7;
+}
+
+@media screen and (max-width: 767px) {
+  .section.client-visit {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .client-visit-logo {
+    height: 36px;
+  }
+}
+
+/* Slight contrast scrim over project hero image, sits behind the white hero text */
+.project-banner-info::before {
+  content: "";
+  position: absolute;
+  inset: 0%;
+  background: linear-gradient(to top, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .22) 42%, rgba(0, 0, 0, .08) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-banner-info > .w-container {
+  position: relative;
+  z-index: 1;
+}

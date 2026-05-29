@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 80" width="480" height="80" role="img" aria-label="brand.soul OS wordmark, reversed for dark backgrounds">
+  <!-- prompt sigil -->
+  <path d="M28 22 L60 40 L28 58" fill="none" stroke="#a78bfa" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- wordmark text. "brand" + "OS" in white, ".soul" in lighter purple for dark-bg legibility. -->
+  <text x="84" y="56" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="44" font-weight="500" letter-spacing="-0.5">
+    <tspan fill="#ffffff">brand</tspan><tspan fill="#a78bfa">.soul</tspan><tspan fill="#ffffff"> OS</tspan>
+  </text>
+</svg>

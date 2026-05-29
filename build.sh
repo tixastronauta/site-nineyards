@@ -205,24 +205,26 @@ done
 log_ok "_recipient hidden field injected (value: $FORM_RECIPIENT)"
 
 log_step "Injecting Google Tag Manager"
-perl -0777 -i -pe '
-  my $head_snippet = "<!-- Google Tag Manager -->\n"
-    . "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\x27gtm.start\x27:\n"
-    . "new Date().getTime(),event:\x27gtm.js\x27});var f=d.getElementsByTagName(s)[0],\n"
-    . "j=d.createElement(s),dl=l!=\x27dataLayer\x27?\x27&l=\x27+l:\x27\x27;j.async=true;j.src=\n"
-    . "\x27https://www.googletagmanager.com/gtm.js?id=\x27+i+dl;f.parentNode.insertBefore(j,f);\n"
-    . "})(window,document,\x27script\x27,\x27dataLayer\x27,\x27$ENV{GTM_ID}\x27);</script>\n"
-    . "<!-- End Google Tag Manager -->\n"
-    . "  ";
+while IFS= read -r -d '' html_file; do
+  GTM_ID="$GTM_ID" perl -0777 -i -pe '
+    my $head_snippet = "<!-- Google Tag Manager -->\n"
+      . "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\x27gtm.start\x27:\n"
+      . "new Date().getTime(),event:\x27gtm.js\x27});var f=d.getElementsByTagName(s)[0],\n"
+      . "j=d.createElement(s),dl=l!=\x27dataLayer\x27?\x27&l=\x27+l:\x27\x27;j.async=true;j.src=\n"
+      . "\x27https://www.googletagmanager.com/gtm.js?id=\x27+i+dl;f.parentNode.insertBefore(j,f);\n"
+      . "})(window,document,\x27script\x27,\x27dataLayer\x27,\x27$ENV{GTM_ID}\x27);</script>\n"
+      . "<!-- End Google Tag Manager -->\n"
+      . "  ";
 
-  my $body_snippet = "<!-- Google Tag Manager (noscript) -->\n"
-    . "<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=$ENV{GTM_ID}\"\n"
-    . "height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n"
-    . "<!-- End Google Tag Manager (noscript) -->\n";
+    my $body_snippet = "<!-- Google Tag Manager (noscript) -->\n"
+      . "<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=$ENV{GTM_ID}\"\n"
+      . "height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n"
+      . "<!-- End Google Tag Manager (noscript) -->\n";
 
-  s|(<meta charset="utf-8">)|$1\n  $head_snippet|s;
-  s|(<body[^>]*>\n)|$1$body_snippet|s;
-' "$INDEX_FILE"
+    s|(<meta charset="utf-8"[^>]*>)|$1\n  $head_snippet|s;
+    s|(<body[^>]*>)|$1\n$body_snippet|s;
+  ' "$html_file"
+done < <(find "$ROOT_DIR/dist" -type f -name "*.html" -print0)
 log_ok "Injected GTM head and body snippets (container: $GTM_ID)"
 
 log_step "Removing .DS_Store files"

@@ -1,0 +1,10 @@
+# robots.txt for nineyards — https://www.nineyards.pt
+
+User-agent: *
+Allow: /
+
+# Machine-readable site summary for LLMs / AI agents
+# https://llmstxt.org
+# See: https://www.nineyards.pt/llms-full.txt
+
+Sitemap: https://www.nineyards.pt/sitemap.xml
